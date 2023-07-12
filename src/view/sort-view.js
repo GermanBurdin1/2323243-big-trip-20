@@ -17,12 +17,18 @@ export default class SortView extends AbstractView {
 
   constructor({ sortType, onSortTypeChange }) {
     super();
-    this.#sortMap = Object.values(SortType)
+    this.#sortMap = Object.values(SortType) // возвращает МАССИВ значений перечисляемых свойств
       .map((type) => ({
         type,
         isChecked: (type === sortType),
         isDisabled: !enabledSortType[type]
-      }));
+      })); /* [
+        { type: 'day', isChecked: false, isDisabled: true },
+        { type: 'time', isChecked: true, isDisabled: true },
+        { type: 'event', isChecked: false, isDisabled: false },
+        { type: 'price', isChecked: false, isDisabled: true },
+        { type: 'offer', isChecked: false, isDisabled: false }
+      ] */
 
     this.#onSortTypeChange = onSortTypeChange;
     this.element.addEventListener('change', this.#sortTypeChangeHandler);
