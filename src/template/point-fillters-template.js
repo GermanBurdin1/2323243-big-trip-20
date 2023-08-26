@@ -1,4 +1,4 @@
-function createFilterItem({ type, hasPoints }, isChecked) {
+function createFilterItem({ type, hasPoints }, currentFilterType) {
   return (/* html */`
     <div class="trip-filters__filter" >
         <input
@@ -7,8 +7,8 @@ function createFilterItem({ type, hasPoints }, isChecked) {
           type="radio"
           name="trip-filter"
           value="${type}"
-          ${isChecked === 0 ? 'checked' : ''}
-          ${(hasPoints) ? '' : 'disable'}>
+          ${type === currentFilterType ? 'checked' : ''}
+          ${(hasPoints) ? '' : 'disabled'}>
         <label
           class="trip-filters__filter-label"
           for="filter-${type}">
@@ -18,16 +18,16 @@ function createFilterItem({ type, hasPoints }, isChecked) {
   );
 }
 
-
-function createFilterTemplate(filters) {
-
-
+function createFilterTemplate(filterItems, currentFilterType) {
+  const filterItemsTemplate = filterItems
+    .map((filter) => createFilterItem(filter, currentFilterType))
+    .join('');
   return (/* html */`
-    <form class="trip-filters" action = "#" method = "get">
-      ${filters.map(createFilterItem).join('')}
-      <button  class="visually-hidden"  type="submit">Accept filter</button>
-    </form >
-    `);
+  <form class="trip-filters" action = "#" method = "get">
+    ${filterItemsTemplate}
+    <button  class="visually-hidden"  type="submit">Accept filter</button>
+     </form >
+  `);
 }
 
 export { createFilterTemplate };

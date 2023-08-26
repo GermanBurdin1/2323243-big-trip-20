@@ -4,6 +4,7 @@ import PointsModel from './model/points-model.js';
 import MockService from './service/mock-service.js';
 import DestinationsModel from './model/destination-model.js';
 import OffersModel from './model/offers-model.js';
+import FilterModel from './model/filter-model.js';
 import { render, RenderPosition } from './framework/render.js';
 import FilterPresenter from './presenter/filter-presenter.js';
 
@@ -15,6 +16,7 @@ const mockService = new MockService();
 const destinationsModel = new DestinationsModel(mockService);
 const pointsModel = new PointsModel(mockService);
 const offersModel = new OffersModel(mockService);
+const filterModel = new FilterModel();
 
 
 const boardPresenter = new BoardPresenter({
