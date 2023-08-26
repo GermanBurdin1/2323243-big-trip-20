@@ -30,6 +30,10 @@ export default class BoardPresenter {
     this.#points = sort[SortType.DAY]([...this.#pointsModel.points]);
   }
 
+  get points() {
+    return this.#pointsModel.points;
+  }
+
   init() {
     this.#renderBoard();
   }
