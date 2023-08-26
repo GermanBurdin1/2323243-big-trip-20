@@ -28,6 +28,7 @@ const boardPresenter = new BoardPresenter({
 
 const filterPresenter = new FilterPresenter({
   filterContainer: tripFilltersElement,
+  filterModel,
   pointsModel
 });
 
