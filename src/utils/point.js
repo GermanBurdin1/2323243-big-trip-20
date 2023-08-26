@@ -102,6 +102,10 @@ function getPointsDurationDifference(pointA, pointB) {
   return durationB - durationA;
 }
 
+function isDateEqual(dateA, dateB) {
+  return (dateA === null && dateB === null) || dayjs(dateA).isSame(dateB, 'D');
+}
+
 export {
   formatStringToDateTime,
   formatStringToShotrDate,
@@ -115,5 +119,6 @@ export {
   isPointPast,
   getPointsDateDifference,
   getPointsPriceDifference,
-  getPointsDurationDifference
+  getPointsDurationDifference,
+  isDateEqual
 };

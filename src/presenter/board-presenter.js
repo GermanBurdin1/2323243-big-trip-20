@@ -106,7 +106,7 @@ export default class BoardPresenter {
 
 
   #renderNoPoints() {
-    render(this.#noPointComponent, this.#boardContainer, RenderPosition.AFTERBEGIN);
+    render(this.#noPointComponent, this.#boardContainer);
   }
 
   #clearBoard({ resetSortType = false } = {}) {
