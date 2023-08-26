@@ -46,7 +46,7 @@ const TYPES = [
   'restaurant'
 ];
 
-const DEFAULT_TYPE = 'flight';
+const DUFULT_TYPE = 'flight';
 
 const FilterType = {
   EVERYTHING: 'everything',
@@ -63,13 +63,28 @@ const SortType = {
   OFFER: 'offer'
 };
 
+const UserAction = {
+  UPDATE_POINT: 'UPDATE_POINT',
+  ADD_POINT: 'ADD_POINT',
+  DELETE_POINT: 'DELETE_POINT'
+};
+
+
+const UpdateType = {
+  PATCH: 'PATCH',
+  MINOR: 'MINOR',
+  MAJOR: 'MAJOR'
+};
+
 export {
   POINT_EMPTY,
   DESCRIPTIONS,
   CITIES,
   Duration,
   TYPES,
-  DEFAULT_TYPE,
+  DUFULT_TYPE,
   FilterType,
-  SortType
+  SortType,
+  UserAction,
+  UpdateType
 };
