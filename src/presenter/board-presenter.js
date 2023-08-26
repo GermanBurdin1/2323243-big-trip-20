@@ -14,7 +14,7 @@ export default class BoardPresenter {
   #offersModel = null;
   #pointsModel = null;
   #sortComponent = null;
-  #noTaskComponent = new NoPointView();
+  #noPointComponent = new NoPointView();
   #pointPresenters = new Map();
   #currentSortType = SortType.DAY;
 
@@ -55,18 +55,17 @@ export default class BoardPresenter {
   };
 
   #handleModelEvent = (updateType, data) => {
-    console.log(updateType, data);
-    // В зависимости от типа изменений решаем, что делать:
     switch (updateType) {
       case UpdateType.PATCH:
-        // - обновить часть списка (например, когда поменялось описание)
         this.#pointPresenters.get(data.id).init(data);
         break;
       case UpdateType.MINOR:
-        // - обновить список (например, когда задача ушла в архив)
+        this.#clearBoard();
+        this.#renderBoard();
         break;
       case UpdateType.MAJOR:
-        // - обновить всю доску (например, при переключении фильтра)
+        this.#clearBoard({ resetSortType: true });
+        this.#renderBoard();
         break;
     }
   };
@@ -107,8 +106,17 @@ export default class BoardPresenter {
 
 
   #renderNoPoints() {
-    render(this.#noTaskComponent, this.#boardContainer, RenderPosition.AFTERBEGIN);
+    render(this.#noPointComponent, this.#boardContainer, RenderPosition.AFTERBEGIN);
   }
+
+  #clearBoard({ resetSortType = false } = {}) {
+    this.#clearPointList();
+
+    if (resetSortType) {
+      this.#currentSortType = SortType.DEFAULT;
+    }
+  }
+
 
   #renderPoints() {
     this.points.forEach((point) => {
@@ -135,3 +143,4 @@ export default class BoardPresenter {
     this.#renderPoints();
   };
 }
+
